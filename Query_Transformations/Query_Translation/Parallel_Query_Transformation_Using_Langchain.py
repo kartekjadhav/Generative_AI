@@ -13,18 +13,18 @@ import json
 load_dotenv()
 client = OpenAI()
 
-# #Load Blog Post
-# loader = WebBaseLoader("https://lilianweng.github.io/posts/2023-06-23-agent/")
-# docs = loader.load()
-# print("DOC LOADED")
+#Load Blog Post
+loader = WebBaseLoader("https://lilianweng.github.io/posts/2023-06-23-agent/")
+docs = loader.load()
+print("DOC LOADED")
 
-# #Split into chunks
-# text_splitter = RecursiveCharacterTextSplitter(
-#         chunk_size=1000,
-#         chunk_overlap=200
-#     )
-# split_docs = text_splitter.split_documents(docs)
-# print("SPLITTED DOCS")
+#Split into chunks
+text_splitter = RecursiveCharacterTextSplitter(
+        chunk_size=1000,
+        chunk_overlap=200
+    )
+split_docs = text_splitter.split_documents(docs)
+print("SPLITTED DOCS")
 
 #Store in Vector DB
 embedder = OpenAIEmbeddings(model="text-embedding-3-small")
@@ -37,9 +37,9 @@ vector_store = QdrantVectorStore.from_documents(
     timeout=20.0
 )
 
-# vector_store.add_documents(documents=split_docs)
+vector_store.add_documents(documents=split_docs)
 
-# print("INGESTION DONE")
+print("INGESTION DONE")
 
 
 
