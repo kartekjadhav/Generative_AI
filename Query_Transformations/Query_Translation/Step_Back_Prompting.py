@@ -53,6 +53,7 @@ prompt = ChatPromptTemplate.from_messages([
     ("human", "{question}")
 ])
 
+#chain to generate step back query
 generate_step_back_queries = prompt | ChatOpenAI(temperature=0.5) | StrOutputParser()
 
 
@@ -68,6 +69,7 @@ response_prompt = ChatPromptTemplate.from_template(template)
 
 question = input("Enter your question > ").strip()
 
+#chain to answer user's query
 chain = (
     {
         #Retrieve from user's question
